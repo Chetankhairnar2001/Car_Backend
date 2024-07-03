@@ -34,6 +34,12 @@ public partial class Car
 
     public short? Year { get; set; }
 
+    public string? Color { get; set; }
+
+    public int? Mileage { get; set; }
+
+    public string? Image { get; set; }
+
     [JsonIgnore]
     public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 

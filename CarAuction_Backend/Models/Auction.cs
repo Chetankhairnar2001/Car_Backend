@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace CarAuction_Backend.Models;
 
@@ -19,9 +20,12 @@ public partial class Auction
 
     public DateTime? EndTime { get; set; }
 
+    [JsonIgnore]
     public virtual User? Buyer { get; set; }
 
+    [JsonIgnore]
     public virtual Car? Car { get; set; }
 
+    [JsonIgnore]
     public virtual User? Seller { get; set; }
 }
