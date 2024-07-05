@@ -10,8 +10,6 @@ public partial class Auction
 
     public int? CarId { get; set; }
 
-    public int? BuyerId { get; set; }
-
     public int? SellerId { get; set; }
 
     public double? StartingBid { get; set; }
