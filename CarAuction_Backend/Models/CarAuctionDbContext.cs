@@ -36,7 +36,6 @@ public partial class CarAuctionDbContext : DbContext
             entity.ToTable("Auction");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.BuyerId).HasColumnName("buyerId");
             entity.Property(e => e.CarId).HasColumnName("carId");
             entity.Property(e => e.EndTime)
                 .HasColumnType("datetime")
@@ -46,10 +45,6 @@ public partial class CarAuctionDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("startTime");
             entity.Property(e => e.StartingBid).HasColumnName("startingBid");
-
-            entity.HasOne(d => d.Buyer).WithMany(p => p.AuctionBuyers)
-                .HasForeignKey(d => d.BuyerId)
-                .HasConstraintName("FK__Auction__buyerId__5CD6CB2B");
 
             entity.HasOne(d => d.Car).WithMany(p => p.Auctions)
                 .HasForeignKey(d => d.CarId)
