@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace CarAuction_Backend.Models;
 
@@ -19,11 +20,11 @@ public partial class User
 
     public string? Email { get; set; }
 
-    public virtual ICollection<Auction> AuctionBuyers { get; set; } = new List<Auction>();
+    [JsonIgnore]
 
-    public virtual ICollection<Auction> AuctionSellers { get; set; } = new List<Auction>();
-
-    public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
-
-    public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
+    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
+	[JsonIgnore]
+	public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
+	[JsonIgnore]
+	public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
 }

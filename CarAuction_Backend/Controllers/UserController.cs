@@ -45,5 +45,17 @@ namespace CarAuction_Backend.Controllers
                 return Created($"User/Api/{user.Id}", user);
             }
         }
+
+   
+		[HttpGet("getIdByEmail")]
+
+		public IActionResult getIdByEmail(string email) {
+                    
+            User result = dbContext.Users.FirstOrDefault(u => u.Email == email);
+            if (result == null) {return NotFound();}
+            return Ok(result.Id);
+        }
+
+
     }
 }

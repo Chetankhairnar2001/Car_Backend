@@ -31,7 +31,7 @@ public partial class CarAuctionDbContext : DbContext
     {
         modelBuilder.Entity<Auction>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Auction__3213E83FD86DC360");
+            entity.HasKey(e => e.Id).HasName("PK__Auction__3213E83F3BD8C91F");
 
             entity.ToTable("Auction");
 
@@ -48,16 +48,16 @@ public partial class CarAuctionDbContext : DbContext
 
             entity.HasOne(d => d.Car).WithMany(p => p.Auctions)
                 .HasForeignKey(d => d.CarId)
-                .HasConstraintName("FK__Auction__carId__5BE2A6F2");
+                .HasConstraintName("FK__Auction__carId__66603565");
 
-            entity.HasOne(d => d.Seller).WithMany(p => p.AuctionSellers)
+            entity.HasOne(d => d.Seller).WithMany(p => p.Auctions)
                 .HasForeignKey(d => d.SellerId)
-                .HasConstraintName("FK__Auction__sellerI__5DCAEF64");
+                .HasConstraintName("FK__Auction__sellerI__6754599E");
         });
 
         modelBuilder.Entity<Bid>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Bid__3213E83FFD6520D1");
+            entity.HasKey(e => e.Id).HasName("PK__Bid__3213E83FD7F5A1FB");
 
             entity.ToTable("Bid");
 
@@ -75,33 +75,33 @@ public partial class CarAuctionDbContext : DbContext
 
             entity.HasOne(d => d.Car).WithMany(p => p.Bids)
                 .HasForeignKey(d => d.CarId)
-                .HasConstraintName("FK__Bid__carId__60A75C0F");
+                .HasConstraintName("FK__Bid__carId__628FA481");
         });
 
         modelBuilder.Entity<Car>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Car__3213E83FE8EC661C");
+            entity.HasKey(e => e.Id).HasName("PK__Car__3213E83F9983F2C1");
 
             entity.ToTable("Car");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.City_Mpg).HasColumnName("city_mpg");
+            entity.Property(e => e.CityMpg).HasColumnName("city_mpg");
             entity.Property(e => e.Class)
                 .HasMaxLength(100)
                 .HasColumnName("class");
             entity.Property(e => e.Color)
                 .HasMaxLength(100)
                 .HasColumnName("color");
-            entity.Property(e => e.Combination_Mpg).HasColumnName("combination_mpg");
+            entity.Property(e => e.CombinationMpg).HasColumnName("combination_mpg");
             entity.Property(e => e.Cylinders).HasColumnName("cylinders");
             entity.Property(e => e.Displacement).HasColumnName("displacement");
             entity.Property(e => e.Drive)
                 .HasMaxLength(20)
                 .HasColumnName("drive");
-            entity.Property(e => e.Fuel_Type)
+            entity.Property(e => e.FuelType)
                 .HasMaxLength(20)
                 .HasColumnName("fuel_type");
-            entity.Property(e => e.Highway_Mpg).HasColumnName("highway_mpg");
+            entity.Property(e => e.HighwayMpg).HasColumnName("highway_mpg");
             entity.Property(e => e.Image)
                 .HasMaxLength(255)
                 .HasColumnName("image");
@@ -120,12 +120,12 @@ public partial class CarAuctionDbContext : DbContext
 
             entity.HasOne(d => d.Seller).WithMany(p => p.Cars)
                 .HasForeignKey(d => d.SellerId)
-                .HasConstraintName("FK__Car__sellerId__59063A47");
+                .HasConstraintName("FK__Car__sellerId__5EBF139D");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3213E83F843C8118");
+            entity.HasKey(e => e.Id).HasName("PK__User__3213E83FB97A2833");
 
             entity.ToTable("User");
 

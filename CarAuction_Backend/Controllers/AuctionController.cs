@@ -1,6 +1,7 @@
 ﻿using CarAuction_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarAuction_Backend.Controllers
 {
@@ -13,18 +14,21 @@ namespace CarAuction_Backend.Controllers
         [HttpGet()]
         public IActionResult GetAll()
         {
-            return Ok(dbContext.Auctions);
+            return Ok(dbContext.Auctions.Include(a=>a.Car));
         }
 
         [HttpPost()]
-        public IActionResult AddAuction(int carId, int sellerId, double startingBid, DateTime startTime, DateTime endTime)
+		//int carId, int sellerId, double startingBid, DateTime startTime, DateTime endTime
+		public IActionResult AddAuction([FromBody] Auction newAuction)
         {
-            Auction newAuction = new Auction();
-            newAuction.CarId = carId;
-            newAuction.SellerId = sellerId;
-            newAuction.StartingBid = startingBid;
-            newAuction.EndTime = endTime;
-            newAuction.StartTime = startTime;
+            newAuction.Id = 0;
+
+           // Auction newAuction = new Auction();
+            //newAuction.CarId = carId;
+            //newAuction.SellerId = sellerId;
+           // newAuction.StartingBid = startingBid;
+           // newAuction.EndTime = endTime;
+            //newAuction.StartTime = startTime;
 
             dbContext.Auctions.Add(newAuction);
             dbContext.SaveChanges();
