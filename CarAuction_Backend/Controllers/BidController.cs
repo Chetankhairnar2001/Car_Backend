@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CarAuction_Backend.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CarAuction_Backend.Controllers
 {
@@ -20,6 +21,16 @@ namespace CarAuction_Backend.Controllers
         public IActionResult GetByCarId(int carid)
         {
             return Ok(dbContext.Bids.Where(b => b.CarId == carid));
+        }
+
+        [HttpGet("gethighestBid")]
+        public IActionResult GetHighestBid(int carid) {
+          
+            if (!dbContext.Bids.Where(b => b.CarId == carid).IsNullOrEmpty()) {
+                return Ok(dbContext.Bids.Where(b => b.CarId == carid).Max(b => b.BidAmmount)); }
+            else {
+                return Ok(dbContext.Auctions.FirstOrDefault(a=>a.CarId==carid).StartingBid);
+            }
         }
 
         [HttpPost()]
