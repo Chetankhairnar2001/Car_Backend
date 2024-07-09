@@ -17,19 +17,20 @@ namespace CarAuction_Backend.Controllers
             return Ok(dbContext.Auctions.Include(a=>a.Car));
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id) {
+            Auction result = dbContext.Auctions.Include(a => a.Car).FirstOrDefault(a=>a.Id == id);
+            if (result == null) {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
         [HttpPost()]
 		//int carId, int sellerId, double startingBid, DateTime startTime, DateTime endTime
 		public IActionResult AddAuction([FromBody] Auction newAuction)
         {
             newAuction.Id = 0;
-
-           // Auction newAuction = new Auction();
-            //newAuction.CarId = carId;
-            //newAuction.SellerId = sellerId;
-           // newAuction.StartingBid = startingBid;
-           // newAuction.EndTime = endTime;
-            //newAuction.StartTime = startTime;
-
             dbContext.Auctions.Add(newAuction);
             dbContext.SaveChanges();
             return Created($"/Auction/Api/{newAuction.Id}", newAuction);
