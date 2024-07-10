@@ -23,16 +23,32 @@ namespace CarAuction_Backend.Controllers
         }
 
         [HttpPost()]
-        public IActionResult AddCar([FromBody] Car newCar, string color, int miles, string img)
+        public IActionResult AddCar([FromBody] CarApi newCar, string color, int miles, string img)
         {
-            newCar.Id = 0;
-            newCar.Color = color;
-            newCar.Mileage = miles;
-            newCar.Image = img;
+            Car car = new Car();
 
-            dbContext.Cars.Add(newCar);
+
+            car.CityMpg = newCar.city_mpg;
+            car.Class = newCar.Class;
+            car.CombinationMpg = newCar.combination_mpg;
+            car.Cylinders = newCar.cylinders;
+            car.Displacement = newCar.displacement;
+            car.Drive = newCar.drive;
+            car.FuelType = newCar.fuel_type;
+            car.HighwayMpg = newCar.highway_mpg;
+            car.Make = newCar.make;
+            car.Model = newCar.model;
+            car.Transmission = newCar.transmission;
+            car.Year = newCar.year; 
+
+	
+            car.Color = color;
+            car.Mileage = miles;
+            car.Image = img;
+
+            dbContext.Cars.Add(car);
             dbContext.SaveChanges();
-            return Created($"/Car/Api/{newCar.Id}", newCar);
+            return Created($"/Car/Api/{car.Id}", car);
         }
 
         [HttpDelete("id")]

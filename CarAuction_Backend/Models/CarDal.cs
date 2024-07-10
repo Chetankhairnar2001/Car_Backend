@@ -6,7 +6,7 @@ namespace CarAuction_Backend.Models
 {
     public class CarDal
     {
-        public static List<Car> getCars(string make,string model,short year, short? limit=1)
+        public static List<CarApi> getCars(string make,string model,short year, short? limit=1)
         {   
             //API URL
             string url = $"https://api.api-ninjas.com/v1/cars?X-Api-Key=636buJJLqIrmAVlQmCTMN9MCh9U4ValjBnLJgn5K&model={model}&make={make}&year={year}";
@@ -18,7 +18,7 @@ namespace CarAuction_Backend.Models
             string JSON = reader.ReadToEnd();
             Console.WriteLine(JSON);
 
-            List<Car> result = JsonConvert.DeserializeObject<List<Car>>(JSON);
+            List<CarApi> result = JsonConvert.DeserializeObject<List<CarApi>>(JSON);
             return result;
 
         }
