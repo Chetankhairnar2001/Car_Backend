@@ -14,7 +14,7 @@ namespace CarAuction_Backend.Controllers
         [HttpGet()]
         public IActionResult GetAll()
         {
-            return Ok(dbContext.Auctions.Include(a=>a.Car));
+            return Ok(dbContext.Auctions.Include(a=>a.Car).OrderBy(a=>a.EndTime));
         }
 
         [HttpGet("{id}")]
