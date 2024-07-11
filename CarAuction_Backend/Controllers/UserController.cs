@@ -30,6 +30,13 @@ namespace CarAuction_Backend.Controllers
             }
         }
 
+        [HttpGet("getUserById")]
+        public IActionResult GetUserById(int id) {
+            User result = dbContext.Users.FirstOrDefault(u => u.Id == id);
+            if (result == null) { return NotFound(); }
+            return Ok(result);
+        }
+
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
