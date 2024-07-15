@@ -27,7 +27,6 @@ namespace CarAuction_Backend.Controllers
         {
             Car car = new Car();
 
-
             car.CityMpg = newCar.city_mpg;
             car.Class = newCar.Class;
             car.CombinationMpg = newCar.combination_mpg;
@@ -39,8 +38,8 @@ namespace CarAuction_Backend.Controllers
             car.Make = newCar.make;
             car.Model = newCar.model;
             car.Transmission = newCar.transmission;
-            car.Year = newCar.year; 
-
+            car.Year = newCar.year;
+            car.SellerId = newCar.SellerId;
 	
             car.Color = color;
             car.Mileage = miles;

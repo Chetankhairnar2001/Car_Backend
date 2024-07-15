@@ -51,7 +51,8 @@ public partial class Car
 public class CarApi
 {
 	public int city_mpg { get; set; }
-	public string Class { get; set; }
+    public int SellerId { get; set; }//newly added
+    public string Class { get; set; }
 	public int combination_mpg { get; set; }
 	public short cylinders { get; set; }
 	public float displacement { get; set; }
