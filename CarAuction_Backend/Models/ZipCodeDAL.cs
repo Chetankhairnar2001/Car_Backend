@@ -14,7 +14,7 @@ namespace CarAuction_Backend.Models
 		public static Distance getDistance(int zip1, int zip2)
 		{
 			//API URL
-			string url = $"https://www.zipcodeapi.com/rest/VkwhRpw3NMXt2hIR4MqUS5jGihrO8HWV9YXptR3tlLvX8HDSphRG4WBkS2c5aevx/distance.json/{zip1}/{zip2}/miles";
+			string url = $"https://www.zipcodeapi.com/rest/xodwKNADIFotBlhPrkhvUSUYSMQSiQdQCH2QNtyACI9OKlRAVMEWvH5YSsr5G9xI/distance.json/{zip1}/{zip2}/miles";
 			HttpWebRequest request = WebRequest.CreateHttp(url);
 			HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
